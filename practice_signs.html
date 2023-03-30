@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+    <title>Practice Signs</title>
+
+    <style>
+        #navheader {
+            height: 10%;
+        }
+
+        #content {
+            /* padding-left: 30px;
+            max-width: 200px; */
+            align-content: center;
+        }
+
+
+        .output_canvas {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <!-- Jumbotron -->
+        <div id="navheader" class="p-5 text-center bg-light mb-3 mb-md-4 mb-lg-4">
+            <h1 class="mb-3">Practice Your Sign Language!</h1>
+            <h4 class="mb-3">Subheading</h4>
+            <a class="btn btn-primary" href="/" role="button">Home</a>
+            <a class="btn btn-primary" href="/grid" role="button">View Sign</a>
+            <a class="btn btn-primary" href="/add_collection" role="button">Add Signs</a>
+        </div>
+        <!-- Jumbotron -->
+    </header>
+
+    <div class="row d-flex justify-content-center mx-4" id="content">
+        <div id="alert_column" class="col-12">
+        </div>
+
+        <div id="column4" class="col-xs-1 col-sm-8 col-md-8 col-lg-5 float-end"> <!--This is where the user chooses their sign-->
+            <input onchange="get_sign()" class="form-control w-md-100" id="sign_data" placeholder="Chose a sign">          
+        </div>
+
+        <div class="position-fixed bottom-0 end-0 p-3 hide" style="z-index: 11"> <!--This is the pop-up for if a sign is not in database-->
+            <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+
+                <div class="toast-header">
+                    <strong class="me-auto">Sign not found</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+
+                <div class="toast-body" id="toast-body"></div>
+            </div>
+        </div>
+    
+        <div class="container text-center col-9 col-md-8 col-lg-7"> <!--This is the actual video displayed-->
+            <video hidden class="input_video">
+            </video>
+            <div id="aspectratio" class="ratio ratio-16x9">
+                <canvas id="webcam_display" class="output_canvas" width="1280px" height="720px"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module">
+        const videoElement = document.getElementsByClassName('input_video')[0];
+        const canvasElement = document.getElementsByClassName('output_canvas')[0];
+        const canvasCtx = canvasElement.getContext('2d');
+
+        var countdown = 0;
+        var prediction = ""
+        var startCapture = false
+        var dataList = []
+        var data = {}
+
+        var sign_Data = document.getElementById("sign_data")
+
+        canvasElement.style.maxHeight = "400px"
+        canvasElement.style.maxWidth = "710px"
+        sign_Data.style.minWidth = "300px"
+        
+
+
+        window.addEventListener('keydown', capture, false);
+
+        function draw(text, x, y) {
+            canvasCtx.font = '48px serif';
+            canvasCtx.fillText(text, x, y);
+        }
+
+        function capture(e) {
+            console.log(e)
+            if (e.key == 'Enter' && startCapture == false) {
+                dataList = []
+                console.log("begin capture")
+                // draw(countdown, 100, 100)
+                startCapture = true
+            }
+        }
+
+        // NOTE: .width is not working. FIX THIS!
+        function onResults(results) {
+
+            canvasCtx.save();
+            canvasCtx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            canvasCtx.drawImage(results.image, 0, 0, canvasElement.width, canvasElement.height);
+
+            // console.log(window.innerWidth)
+
+
+            draw("Countdown: " + countdown, 100, 100)
+            draw("Sign: " + prediction, 100, 150)
+
+            if (results.multiHandLandmarks) {
+                for (const landmarks of results.multiHandLandmarks) {
+                    drawConnectors(canvasCtx, landmarks, HAND_CONNECTIONS,
+                        { color: '#00FF00', lineWidth: 5 });
+                    drawLandmarks(canvasCtx, landmarks, { color: '#FF0000', lineWidth: 2 });
+
+                    // draw("test", 100, 100)
+                    if (startCapture) {
+                        countdown++;  // ++ = + 1
+                        dataList.push(landmarks)
+                        if (countdown == 40) {
+                            startCapture = false;
+                            countdown = 0;
+                            console.log('landmark length:', dataList.length);
+                            // var sign_Data = document.getElementById("sign_data").value
+                            var sign_Data = sign_data.value
+                            console.log(sign_Data)
+
+
+                            axios.post('/practice', { 'raw_data': dataList, 'picked_sign': sign_Data }).then(
+                                (response) => {
+                                    // console.log(response)  // take prediction recieved and show it on screen
+                                    prediction = response.data.prediction;
+                                    console.log(prediction)
+
+                                    if (response.data.in_database == false) { // if the user input is not found in database
+
+                                        let sign_404 = response.data.sign_404 // error message
+                                        var toastLiveExample = document.getElementById('liveToast') // creates a pop-up
+                                        var toast_content = document.getElementById('toast-body')
+                                        toast_content.innerHTML = 'This sign is not currently in the database. ' + sign_404 // sets pop-up content
+                                        var toast = new bootstrap.Toast(toastLiveExample)
+                                        
+                                        toast.show()
+
+                                    }
+                                },
+
+                                (error) => {
+                                    console.log(error)  // if error occurs during prediction, notification pops up
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+
+            canvasCtx.restore();
+        }
+
+        const hands = new Hands({
+            locateFile: (file) => {
+                return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+            }
+        });
+
+        hands.setOptions({
+            maxNumHands: 1,  // change back to 2 later
+            modelComplexity: 1,
+            minDetectionConfidence: 0.5,
+            minTrackingConfidence: 0.5
+        });
+
+        hands.onResults(onResults);
+
+        const camera = new Camera(videoElement, {
+            onFrame: async () => {
+                await hands.send({ image: videoElement });
+            },
+            width: 1280,
+            height: 720
+        });
+
+        camera.start();
+    </script>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+    </body>
+
+</html>
