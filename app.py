@@ -175,8 +175,7 @@ def predict_signs(data):
     return strung_chars
 
 @app.route('/', methods=['GET', 'POST'])
-# TODO: Instead of uselessly having that prediction, instead make a card layout to each page and explain what it does
-# Example: https://getbootstrap.com/docs/5.2/examples/album/
+# TODO: Change the layout of the homepage so that there's images and text explaining the website instead of current placeholders
 def home():
     if request.method == 'GET':
         # return render_template('home.html')
@@ -193,7 +192,7 @@ def index():
         return redirect('/index')
 
 @app.route('/add_collection', methods=['GET', 'POST'])
-# TODO: Figure out how to deal with multiple moving points
+# TODO: Figure out how to accomodate whole sentences if possible
 def add_collection():
     if request.method == 'GET':
         return render_template('add_signs.html')
@@ -238,7 +237,7 @@ def add_collection():
 
 
 @app.route('/grid', methods=['GET', 'POST'])
-# TODO: Clean up UI, maybe look into having a little 3D rendition of the hand/a clip of someone doing the gesture playing in tandem
+# TODO: Clean up UI and figure out the blurriness of initial startup (note: blurriness clears up if window is resized --> why?)
 def grid():
     global strclass_list
     if request.method == 'GET':
