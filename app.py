@@ -127,7 +127,7 @@ for x in range(0, len(model_df), 1):
         moving_signs_dict[sign_class] = moving
 
 
-app = Flask('Jumble', template_folder='/Users/shrutiladiwala/Desktop/Backup/ladiw/Documents/Coding/pycharm_files/GraphsExercisesTests/handtracking_test/teacher_code_fps_timing/multihand_landmark_handtracking/templates')
+app = Flask('Jumble')
 app.config['MONGO_URI'] = "mongodb://Shruti:bfy6SeOsMbF02Ffp@cluster0-l0gvf.mongodb.net/Shruti_Dats?retryWrites=true&w=majority"
 app.config['SECRET_KEY'] = "huh"
 mongo = PyMongo(app)
