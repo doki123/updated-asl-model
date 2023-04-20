@@ -55,7 +55,9 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
             
         #square-box-2 { opacity: 50%; } 
 
-        .square-box-container {position: relative}
+        .square-box-container { position: relative }
+
+        #grid-element { position: relative }
 
         #grid-element, #sign-input { margin: 10px; }
 
@@ -102,37 +104,30 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
             <video hidden class="input_video"></video>
             <canvas hidden class="output_canvas" width="1280px" height="720px"></canvas>
         <div class="row w-100">
-            <!-- <div class="container text-center"> -->
-                <!-- <div class="bg-dark"> -->
-                    <div class="col-sm-5 bg-dark" id="sign-input">
-                        <div class="col-8 col-sm-8 col-md-6 col-lg-4">
-                            <input onchange="get_sign()" class="form-control" id="sign_data" placeholder="Chose a sign">
-                        </div>
 
+            <div class="col-sm-5 bg-dark" id="sign-input">
+                <div class="col-8 col-sm-8 col-md-6 col-lg-4">
+                    <input onchange="get_sign()" class="form-control" id="sign_data" placeholder="Chose a sign">
+                </div>
+
+            </div>
+
+            <div class="col-sm-3 bg-warning" id="grid-element">
+
+                <div class="container" id="square-box-container">
+
+                    <div class="square-box" id="square-box-1">
+                        <!-- static sign -->
+                        <div class="landmark-grid-container" id="landmark-grid-container-1"></div>
                     </div>
-                <!-- </div> -->
 
-              <!-- <div class="bg-warning"> -->
-                <div class="col-sm-3 bg-warning" id="grid-element">
-
-                    <div class="container" id="square-box-container">
-
-                        <div class="square-box" id="square-box-1">
-                            <!-- static sign -->
-                            <div class="landmark-grid-container" id="landmark-grid-container-1"></div>
-                        </div>
-
-                        <div class="square-box" id="square-box-2">
-                            <!-- moving sign -->
-                            <div class="landmark-grid-container" id="landmark-grid-container-2"></div>
-                        </div>
-
+                    <div class="square-box" id="square-box-2">
+                        <!-- moving sign -->
+                        <div class="landmark-grid-container" id="landmark-grid-container-2"></div>
                     </div>
 
                 </div>
-
-              <!-- </div> -->
-            <!-- </div> -->
+            </div>
 
         </div>
     </div>
