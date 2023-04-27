@@ -51,19 +51,23 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
     
         .landmark-label-js { display: none; }
 
-        .square-box { position: absolute; }
+        .square-box { 
+            position: absolute; 
+            top: 50%;
+            left: 50%; 
+            transform: translate(-50%, 0%); }
             
         #square-box-2 { opacity: 50%; } 
 
-        .square-box-container { position: relative }
+        /* .square-box-container { position: relative } */
 
-        #grid-element { position: relative }
+        #grid-element { position: relative; }
 
-        #grid-element, #sign-input { margin: 10px; }
+        /* #grid-element, #sign-input { margin: 10px; }
 
         #grid-element { margin-left: -10px; }
 
-        #sign-input { margin-left: 15px; }
+        #sign-input { margin-left: 15px; } */
 
        
         </style>
@@ -103,16 +107,16 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
             <!-- Take in input from the camera and display on the grid-->
             <video hidden class="input_video"></video>
             <canvas hidden class="output_canvas" width="1280px" height="720px"></canvas>
-        <div class="row w-100">
+        <div class="container-fluid d-flex justify-content-center my-3">
 
-            <div class="col-sm-5 bg-dark" id="sign-input">
-                <div class="col-8 col-sm-8 col-md-6 col-lg-4">
-                    <input onchange="get_sign()" class="form-control" id="sign_data" placeholder="Chose a sign">
-                </div>
-
+            <!-- <div class="col-8 col-sm-8 col-md-6 col-lg-4"> -->
+            <div class="col-sm-3 bg-dark" id="sign-input">
+                <input onchange="get_sign()" class="form-control" id="sign_data" placeholder="Chose a sign">
             </div>
+        </div>
 
-            <div class="col-sm-3 bg-warning" id="grid-element">
+        <div class="d-flex justify-content-center">
+            <div class="col-sm-6 bg-warning" id="grid-element">
 
                 <div class="container" id="square-box-container">
 
@@ -128,8 +132,8 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
 
                 </div>
             </div>
-
         </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
