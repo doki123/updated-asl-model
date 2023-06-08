@@ -1,4 +1,5 @@
-# NOTE: THE MODEL APP PYTHON CREATION FILE IS IN WORLD_LANDMARKS_HANDS/WORLD_LANDMARK_MODEL.PY
+# NOTE: THE (original) MODEL APP PYTHON CREATION FILE IS IN WORLD_LANDMARKS_HANDS/WORLD_LANDMARK_MODEL.PY
+# TODO: Update dataset with letters + words + figure out how to make flexible sentences
 
 from cmath import isnan
 from flask_pymongo import PyMongo
@@ -14,7 +15,7 @@ import string
 
 loaded_model = joblib.load('static/world_landmark_model.joblib')
 
-# lines up with the static_sign dictionary for hand datapoints in two_grids_current --> this tracks with point of the finger is being traced
+# lines up  with the static_sign dictionary for hand datapoints in two_grids_current --> this tracks with point of the finger is being traced
 # syntax: mov = moving_points_plot['WRIST']; traceList.push(static_sign[0][mov]) --> creates a list of trace points to plot
 moving_points_plot = {
     'WRIST': 0, 
