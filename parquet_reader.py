@@ -31,8 +31,19 @@ for wanted in starting_signs:
 cut_df = cut_df.reset_index()
 cut_df = cut_df.drop(["index"], axis=1)
 
-print(cut_df)
+# print(set(cut_df["sign"]))
+# print(subpath_names)
 
+for sign in starting_signs:
+    for path in subpath_names.get(sign):
+        # print(path, sign)
+        pass
 # note: the path for the parquet files is in the format train_landmark_files/[participant_id]/[sequence_id].parquet
 # sequence_id is the name of the parquet file, while participant_id is the name of the subfolder the parquet is in
 
+df =  pd.read_parquet('parqtest.parquet', engine='pyarrow')
+print(df)
+
+cols = ["type"] # this just reads out a specific column from the parquet
+df1 = pd.read_parquet('parqtest.parquet', columns=cols) # note: the label for which sign this is --> train.csv from kaggle
+print(df1)
