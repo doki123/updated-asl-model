@@ -6,37 +6,34 @@ import os
 import shutil 
 
 df = pd.read_json('static/kaggle_wsasl_data/WLASL_v0.3.json')
-missing = open('static/kaggle_wsasl_data/missing.txt').read().split('\n')
+missing = open('static/kaggle_wsasl_data/missing.txt').read().split('\n') # list of unavailable videos
 # print(missing)
 
 # print(df[df["gloss"] == "thank you"]) # thank you, no, yes
-video_ids = []
-unwanted_videos = []
+video_ids = [] # list of all video titles
 wanted_signs = ["thank you", "no", "yes"]
-for z in wanted_signs:
-    for x in df[df["gloss"] == z]["instances"]:
+
+for signs in wanted_signs:
+    for x in df[df["gloss"] == signs]["instances"]:
         for y in x:
-            # print(y['url'])
-            # print(y['video_id'])
+            # print(y)
             if y['video_id'] not in missing:
                 video_ids.append(y['video_id'] + '.mp4')
+                print(y)
             else:
-                print(y['video_id'], 'does not exist')
+                # print(y['video_id'], 'does not exist')
+                pass # this means that the video got deleted/isn't available
             
-
-print(video_ids)
-
 abs_path = '/Users/shrutiladiwala/Desktop/Backup/ladiw/Documents/Coding/pycharm_files/GraphsExercisesTests/handtracking_test/teacher_code_fps_timing/updated-asl-model/static/kaggle_wsasl_data/'
-
-existing_vids = os.listdir(abs_path + 'wanted_videos')
-
-if existing_vids.sort() == video_ids.sort():
-    print('good')
 
 for move in video_ids:
     try: 
-        shutil.move(abs_path + 'videos/' + move, abs_path + 'wanted_videos')
+        shutil.move(abs_path + 'videos/' + move, abs_path + 'wanted_videos') # moves all needed videos into the wanted_videos folder
     except: 
-        print('video not found', move)
+        pass # means the video does not exist/can't be moved
 
+existing_vids = os.listdir(abs_path + 'wanted_videos')
+print((existing_vids))
 
+if existing_vids.sort() == video_ids.sort():
+    print('good') # this means the videos in the wanted folder match everything in the videos_id
