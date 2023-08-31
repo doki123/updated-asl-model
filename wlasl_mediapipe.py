@@ -329,91 +329,179 @@ for indiv_video in wanted_files[:5]:
 
       if results.left_hand_landmarks is not None or results.right_hand_landmarks is not None:
         if results.right_hand_landmarks is not None:
+            # right_data = {
+            #           'WRIST_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].x,
+            #           'WRIST_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].y,
+            #           'WRIST_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].z,
+
+
+            #           'THUMB_CMC_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].x,
+            #           'THUMB_CMC_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].y,
+            #           'THUMB_CMC_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].z,
+
+            #           'THUMB_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].x,
+            #           'THUMB_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].y,
+            #           'THUMB_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].z,
+
+            #           'THUMB_IP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].x,
+            #           'THUMB_IP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].y,
+            #           'THUMB_IP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].z,
+
+            #           'THUMB_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].x,
+            #           'THUMB_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].y,
+            #           'THUMB_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].z,
+
+            #           'INDEX_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].x,
+            #           'INDEX_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].y,
+            #           'INDEX_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].z,
+
+            #           'INDEX_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].x,
+            #           'INDEX_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].y,
+            #           'INDEX_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].z,
+
+            #           'INDEX_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].x,
+            #           'INDEX_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].y,
+            #           'INDEX_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].z,
+
+            #           'INDEX_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].x,
+            #           'INDEX_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].y,
+            #           'INDEX_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].z,
+
+            #           'MIDDLE_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].x,
+            #           'MIDDLE_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].y,
+            #           'MIDDLE_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].z,
+
+            #           'MIDDLE_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].x,
+            #           'MIDDLE_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].y,
+            #           'MIDDLE_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].z,
+
+            #           'MIDDLE_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].x,
+            #           'MIDDLE_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].y,
+            #           'MIDDLE_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].z,
+
+            #           'MIDDLE_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].x,
+            #           'MIDDLE_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].y,
+            #           'MIDDLE_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].z,
+
+            #           'RING_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].x,
+            #           'RING_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].y,
+            #           'RING_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].z,
+
+            #           'RING_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].x,
+            #           'RING_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].y,
+            #           'RING_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].z,
+
+            #           'RING_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].x,
+            #           'RING_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].y,
+            #           'RING_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].z,
+
+            #           'RING_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].x,
+            #           'RING_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].y,
+            #           'RING_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].z,
+
+            #           'PINKY_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].x,
+            #           'PINKY_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].y,
+            #           'PINKY_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].z,
+
+            #           'PINKY_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].x,
+            #           'PINKY_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].y,
+            #           'PINKY_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].z,
+
+            #           'PINKY_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].x,
+            #           'PINKY_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].y,
+            #           'PINKY_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].z,
+
+            #           'PINKY_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].x,
+            #           'PINKY_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].y,
+            #           'PINKY_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].z,
+
+            #       }
+
             right_data = {
-                      'WRIST_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].x,
-                      'WRIST_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].y,
-                      'WRIST_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].z,
+                      'RIGHT_WRIST_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].x,
+                      'RIGHT_WRIST_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].y,
+                      'RIGHT_WRIST_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].z,
 
 
-                      'THUMB_CMC_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].x,
-                      'THUMB_CMC_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].y,
-                      'THUMB_CMC_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].z,
+                      'RIGHT_THUMB_CMC_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].x,
+                      'RIGHT_THUMB_CMC_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].y,
+                      'RIGHT_THUMB_CMC_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].z,
 
-                      'THUMB_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].x,
-                      'THUMB_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].y,
-                      'THUMB_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].z,
+                      'RIGHT_THUMB_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].x,
+                      'RIGHT_THUMB_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].y,
+                      'RIGHT_THUMB_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].z,
 
-                      'THUMB_IP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].x,
-                      'THUMB_IP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].y,
-                      'THUMB_IP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].z,
+                      'RIGHT_THUMB_IP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].x,
+                      'RIGHT_THUMB_IP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].y,
+                      'RIGHT_THUMB_IP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].z,
 
-                      'THUMB_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].x,
-                      'THUMB_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].y,
-                      'THUMB_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].z,
+                      'RIGHT_THUMB_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].x,
+                      'RIGHT_THUMB_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].y,
+                      'RIGHT_THUMB_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].z,
 
-                      'INDEX_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].x,
-                      'INDEX_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].y,
-                      'INDEX_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].z,
+                      'RIGHT_INDEX_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].x,
+                      'RIGHT_INDEX_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].y,
+                      'RIGHT_INDEX_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].z,
 
-                      'INDEX_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].x,
-                      'INDEX_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].y,
-                      'INDEX_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].z,
+                      'RIGHT_INDEX_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].x,
+                      'RIGHT_INDEX_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].y,
+                      'RIGHT_INDEX_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].z,
 
-                      'INDEX_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].x,
-                      'INDEX_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].y,
-                      'INDEX_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].z,
+                      'RIGHT_INDEX_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].x,
+                      'RIGHT_INDEX_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].y,
+                      'RIGHT_INDEX_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].z,
 
-                      'INDEX_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].x,
-                      'INDEX_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].y,
-                      'INDEX_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].z,
+                      'RIGHT_INDEX_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].x,
+                      'RIGHT_INDEX_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].y,
+                      'RIGHT_INDEX_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].z,
 
-                      'MIDDLE_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].x,
-                      'MIDDLE_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].y,
-                      'MIDDLE_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].z,
+                      'RIGHT_MIDDLE_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].x,
+                      'RIGHT_MIDDLE_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].y,
+                      'RIGHT_MIDDLE_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].z,
 
-                      'MIDDLE_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].x,
-                      'MIDDLE_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].y,
-                      'MIDDLE_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].z,
+                      'RIGHT_MIDDLE_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].x,
+                      'RIGHT_MIDDLE_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].y,
+                      'RIGHT_MIDDLE_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].z,
 
-                      'MIDDLE_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].x,
-                      'MIDDLE_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].y,
-                      'MIDDLE_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].z,
+                      'RIGHT_MIDDLE_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].x,
+                      'RIGHT_MIDDLE_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].y,
+                      'RIGHT_MIDDLE_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].z,
 
-                      'MIDDLE_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].x,
-                      'MIDDLE_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].y,
-                      'MIDDLE_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].z,
+                      'RIGHT_MIDDLE_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].x,
+                      'RIGHT_MIDDLE_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].y,
+                      'RIGHT_MIDDLE_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].z,
 
-                      'RING_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].x,
-                      'RING_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].y,
-                      'RING_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].z,
+                      'RIGHT_RING_FINGER_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].x,
+                      'RIGHT_RING_FINGER_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].y,
+                      'RIGHT_RING_FINGER_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].z,
 
-                      'RING_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].x,
-                      'RING_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].y,
-                      'RING_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].z,
+                      'RIGHT_RING_FINGER_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].x,
+                      'RIGHT_RING_FINGER_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].y,
+                      'RIGHT_RING_FINGER_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].z,
 
-                      'RING_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].x,
-                      'RING_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].y,
-                      'RING_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].z,
+                      'RIGHT_RING_FINGER_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].x,
+                      'RIGHT_RING_FINGER_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].y,
+                      'RIGHT_RING_FINGER_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].z,
 
-                      'RING_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].x,
-                      'RING_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].y,
-                      'RING_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].z,
+                      'RIGHT_RING_FINGER_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].x,
+                      'RIGHT_RING_FINGER_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].y,
+                      'RIGHT_RING_FINGER_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].z,
 
-                      'PINKY_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].x,
-                      'PINKY_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].y,
-                      'PINKY_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].z,
+                      'RIGHT_PINKY_MCP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].x,
+                      'RIGHT_PINKY_MCP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].y,
+                      'RIGHT_PINKY_MCP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].z,
 
-                      'PINKY_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].x,
-                      'PINKY_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].y,
-                      'PINKY_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].z,
+                      'RIGHT_PINKY_PIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].x,
+                      'RIGHT_PINKY_PIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].y,
+                      'RIGHT_PINKY_PIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].z,
 
-                      'PINKY_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].x,
-                      'PINKY_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].y,
-                      'PINKY_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].z,
+                      'RIGHT_PINKY_DIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].x,
+                      'RIGHT_PINKY_DIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].y,
+                      'RIGHT_PINKY_DIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].z,
 
-                      'PINKY_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].x,
-                      'PINKY_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].y,
-                      'PINKY_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].z,
+                      'RIGHT_PINKY_TIP_X'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].x,
+                      'RIGHT_PINKY_TIP_Y'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].y,
+                      'RIGHT_PINKY_TIP_Z'+str(count): results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].z,
 
                   }
 
@@ -423,91 +511,179 @@ for indiv_video in wanted_files[:5]:
             rh_inf += 1
             # print(right_df)
         elif results.left_hand_landmarks is not None:
+            # left_data = {
+            #           'WRIST_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].x,
+            #           'WRIST_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].y,
+            #           'WRIST_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].z,
+
+
+            #           'THUMB_CMC_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].x,
+            #           'THUMB_CMC_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].y,
+            #           'THUMB_CMC_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].z,
+
+            #           'THUMB_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].x,
+            #           'THUMB_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].y,
+            #           'THUMB_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].z,
+
+            #           'THUMB_IP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].x,
+            #           'THUMB_IP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].y,
+            #           'THUMB_IP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].z,
+
+            #           'THUMB_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].x,
+            #           'THUMB_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].y,
+            #           'THUMB_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].z,
+
+            #           'INDEX_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].x,
+            #           'INDEX_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].y,
+            #           'INDEX_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].z,
+
+            #           'INDEX_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].x,
+            #           'INDEX_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].y,
+            #           'INDEX_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].z,
+
+            #           'INDEX_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].x,
+            #           'INDEX_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].y,
+            #           'INDEX_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].z,
+
+            #           'INDEX_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].x,
+            #           'INDEX_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].y,
+            #           'INDEX_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].z,
+
+            #           'MIDDLE_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].x,
+            #           'MIDDLE_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].y,
+            #           'MIDDLE_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].z,
+
+            #           'MIDDLE_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].x,
+            #           'MIDDLE_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].y,
+            #           'MIDDLE_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].z,
+
+            #           'MIDDLE_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].x,
+            #           'MIDDLE_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].y,
+            #           'MIDDLE_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].z,
+
+            #           'MIDDLE_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].x,
+            #           'MIDDLE_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].y,
+            #           'MIDDLE_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].z,
+
+            #           'RING_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].x,
+            #           'RING_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].y,
+            #           'RING_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].z,
+
+            #           'RING_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].x,
+            #           'RING_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].y,
+            #           'RING_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].z,
+
+            #           'RING_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].x,
+            #           'RING_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].y,
+            #           'RING_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].z,
+
+            #           'RING_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].x,
+            #           'RING_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].y,
+            #           'RING_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].z,
+
+            #           'PINKY_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].x,
+            #           'PINKY_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].y,
+            #           'PINKY_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].z,
+
+            #           'PINKY_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].x,
+            #           'PINKY_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].y,
+            #           'PINKY_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].z,
+
+            #           'PINKY_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].x,
+            #           'PINKY_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].y,
+            #           'PINKY_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].z,
+
+            #           'PINKY_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].x,
+            #           'PINKY_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].y,
+            #           'PINKY_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].z,
+
+            #       }
+ 
             left_data = {
-                      'WRIST_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].x,
-                      'WRIST_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].y,
-                      'WRIST_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].z,
+                      'LEFT_WRIST_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].x,
+                      'LEFT_WRIST_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].y,
+                      'LEFT_WRIST_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST].z,
 
 
-                      'THUMB_CMC_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].x,
-                      'THUMB_CMC_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].y,
-                      'THUMB_CMC_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].z,
+                      'LEFT_THUMB_CMC_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].x,
+                      'LEFT_THUMB_CMC_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].y,
+                      'LEFT_THUMB_CMC_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_CMC].z,
 
-                      'THUMB_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].x,
-                      'THUMB_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].y,
-                      'THUMB_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].z,
+                      'LEFT_THUMB_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].x,
+                      'LEFT_THUMB_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].y,
+                      'LEFT_THUMB_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_MCP].z,
 
-                      'THUMB_IP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].x,
-                      'THUMB_IP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].y,
-                      'THUMB_IP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].z,
+                      'LEFT_THUMB_IP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].x,
+                      'LEFT_THUMB_IP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].y,
+                      'LEFT_THUMB_IP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_IP].z,
 
-                      'THUMB_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].x,
-                      'THUMB_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].y,
-                      'THUMB_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].z,
+                      'LEFT_THUMB_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].x,
+                      'LEFT_THUMB_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].y,
+                      'LEFT_THUMB_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.THUMB_TIP].z,
 
-                      'INDEX_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].x,
-                      'INDEX_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].y,
-                      'INDEX_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].z,
+                      'LEFT_INDEX_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].x,
+                      'LEFT_INDEX_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].y,
+                      'LEFT_INDEX_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_MCP].z,
 
-                      'INDEX_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].x,
-                      'INDEX_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].y,
-                      'INDEX_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].z,
+                      'LEFT_INDEX_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].x,
+                      'LEFT_INDEX_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].y,
+                      'LEFT_INDEX_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_PIP].z,
 
-                      'INDEX_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].x,
-                      'INDEX_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].y,
-                      'INDEX_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].z,
+                      'LEFT_INDEX_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].x,
+                      'LEFT_INDEX_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].y,
+                      'LEFT_INDEX_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_DIP].z,
 
-                      'INDEX_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].x,
-                      'INDEX_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].y,
-                      'INDEX_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].z,
+                      'LEFT_INDEX_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].x,
+                      'LEFT_INDEX_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].y,
+                      'LEFT_INDEX_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.INDEX_FINGER_TIP].z,
 
-                      'MIDDLE_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].x,
-                      'MIDDLE_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].y,
-                      'MIDDLE_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].z,
+                      'LEFT_MIDDLE_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].x,
+                      'LEFT_MIDDLE_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].y,
+                      'LEFT_MIDDLE_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_MCP].z,
 
-                      'MIDDLE_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].x,
-                      'MIDDLE_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].y,
-                      'MIDDLE_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].z,
+                      'LEFT_MIDDLE_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].x,
+                      'LEFT_MIDDLE_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].y,
+                      'LEFT_MIDDLE_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_PIP].z,
 
-                      'MIDDLE_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].x,
-                      'MIDDLE_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].y,
-                      'MIDDLE_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].z,
+                      'LEFT_MIDDLE_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].x,
+                      'LEFT_MIDDLE_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].y,
+                      'LEFT_MIDDLE_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_DIP].z,
 
-                      'MIDDLE_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].x,
-                      'MIDDLE_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].y,
-                      'MIDDLE_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].z,
+                      'LEFT_MIDDLE_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].x,
+                      'LEFT_MIDDLE_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].y,
+                      'LEFT_MIDDLE_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.MIDDLE_FINGER_TIP].z,
 
-                      'RING_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].x,
-                      'RING_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].y,
-                      'RING_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].z,
+                      'LEFT_RING_FINGER_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].x,
+                      'LEFT_RING_FINGER_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].y,
+                      'LEFT_RING_FINGER_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_MCP].z,
 
-                      'RING_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].x,
-                      'RING_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].y,
-                      'RING_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].z,
+                      'LEFT_RING_FINGER_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].x,
+                      'LEFT_RING_FINGER_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].y,
+                      'LEFT_RING_FINGER_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_PIP].z,
 
-                      'RING_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].x,
-                      'RING_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].y,
-                      'RING_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].z,
+                      'LEFT_RING_FINGER_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].x,
+                      'LEFT_RING_FINGER_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].y,
+                      'LEFT_RING_FINGER_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_DIP].z,
 
-                      'RING_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].x,
-                      'RING_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].y,
-                      'RING_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].z,
+                      'LEFT_RING_FINGER_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].x,
+                      'LEFT_RING_FINGER_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].y,
+                      'LEFT_RING_FINGER_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.RING_FINGER_TIP].z,
 
-                      'PINKY_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].x,
-                      'PINKY_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].y,
-                      'PINKY_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].z,
+                      'LEFT_PINKY_MCP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].x,
+                      'LEFT_PINKY_MCP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].y,
+                      'LEFT_PINKY_MCP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_MCP].z,
 
-                      'PINKY_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].x,
-                      'PINKY_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].y,
-                      'PINKY_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].z,
+                      'LEFT_PINKY_PIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].x,
+                      'LEFT_PINKY_PIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].y,
+                      'LEFT_PINKY_PIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_PIP].z,
 
-                      'PINKY_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].x,
-                      'PINKY_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].y,
-                      'PINKY_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].z,
+                      'LEFT_PINKY_DIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].x,
+                      'LEFT_PINKY_DIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].y,
+                      'LEFT_PINKY_DIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_DIP].z,
 
-                      'PINKY_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].x,
-                      'PINKY_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].y,
-                      'PINKY_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].z,
+                      'LEFT_PINKY_TIP_X'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].x,
+                      'LEFT_PINKY_TIP_Y'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].y,
+                      'LEFT_PINKY_TIP_Z'+str(count): results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.PINKY_TIP].z,
 
                   }
  
