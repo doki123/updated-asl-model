@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-<!-- TODO: MAKE A FUNCTION EVERY TIME THE INSTANCE BUTTON IS CLICKED TO DELETE THAT BUTTON -->
 
 <head>
     <!-- Required meta tags -->
@@ -14,9 +13,38 @@
     <title>Learn Sign</title>
 
     <style>
+        #text-recieve {
+            padding: 10px;
+        }
+
         .output_canvas {
             width: 80%;
             height: 80%;
+        }
+
+
+        #nav {
+            background-color: #41EAD4;
+        }
+
+        .btn {
+            background-color: black;
+        }
+
+        #home {
+            color: white;
+        }
+
+        #grid {
+            color: #F45B69;
+        }
+
+        #collect {
+            color: #41EAD4;
+        }
+
+        #practice {
+            color: #B892FF
         }
     </style>
 </head>
@@ -24,18 +52,23 @@
 <body>
     <header>
         <!-- Jumbotron -->
-        <div class="p-5 text-center bg-light">
+        <div class="p-5 text-center" id="nav">
             <h1 class="mb-3">Add Signs</h1>
-            <a class="btn btn-primary" href="/practice" role="button">Pratice Sign</a>
-            <a class="btn btn-primary" href="/" role="button">Home</a>
-            <a class="btn btn-primary" href="/grid" role="button">View Sign</a>
+            <p class="mb-3">Help expand our database! Fill in some information and press begin!
+                A button pops up every time you record a sign--if you want to delete a sign, just click that button! When you're all done, press submit!
+                Adding more signs is always appreciated!
+            </p>
+            <a class="btn" id="home" href="/" role="button">Home</a>
+            <a class="btn" id="practice" href="/practice" role="button">Pratice Sign</a>
+            <a class="btn" id="grid" href="/grid" role="button">View Sign</a>
         </div>
         <!-- Jumbotron -->
     </header>
 
-    <div class="col-4">
+    <div class="col-4" id="text-recieve">
         <label for="sign_name">What letter/number/word does the sign correlate to?</label>
         <input required class="form-control" id="sign_name" placeholder="Sign name">
+        <p></p>
 
 
         <label for="moving_yn">Does your hand moves while signing this?</label>
@@ -47,6 +80,7 @@
                 (ex, 'sorry' is a rotating fist)</option>
         </datalist>
 
+        <p></p>
         <label for="torso_yn">Is the upper body included in this sign?</label>
         <input list="torso_yn" id="torso" name="torso" placeholder="No">
         <datalist id="torso_yn"> <!-- where i left off: trying to make the torso yes/no value happen in javascript-->
@@ -55,35 +89,10 @@
             <option value="Yes">Your torso is involved
                 (ex, 'sorry' is a rotating fist on your chest)</option>
         </datalist>
-
-        <!-- <label for="tracking_tip">If this sign requires movement, please select which part of the hand is moving</label>
-        <input list="tracking_tip" id="trace_tip" name="trace_tip" value="NONE">
-        <datalist id="tracking_tip">
-            <option value="NONE">This sign is stationary</option>
-            <option value="WRIST">Wrist</option>
-            <option value="THUMB_CMC">Thumb carpometacarpal</option>
-            <option value="THUMB_MCP">Lowest thumb joint</option>
-            <option value="THUMB_IP">Middle thumb joint</option>
-            <option value="THUMB_TIP">Thumb finger tip</option>
-            <option value="INDEX_MCP">Lowest index finger joint</option>
-            <option value="INDEX_PIP">Second-lowest index finger joint</option>
-            <option value="INDEX_DIP">Second-highest index finger joint</option>
-            <option value="INDEX_TIP">Index finger tip</option>
-            <option value="MIDDLE_MCP">Lowest middle finger joint</option>
-            <option value="MIDDLE_PIP">Second-lowest middle finger joint</option>
-            <option value="MIDDLE_DIP">Second-highest middle finger joint</option>
-            <option value="MIDDLE_TIP">Middle finger tip</option>
-            <option value="RING_MCP">Lowest ring finger joint</option>
-            <option value="RING_PIP">Second-lowest ring finger joint</option>
-            <option value="RING_DIP">Second-highest ring finger joint</option>
-            <option value="RING_TIP">Ring finger tip</option>
-            <option value="PINKY_MCP">Lowest pinky finger joint</option>
-            <option value="PINKY_PIP">Second-lowest pinky finger joint</option>
-            <option value="PINKY_DIP">Second-highest pinky finger joint</option>
-            <option value="PINKY_TIP">Pinky finger tip</option>
-        </datalist> -->
+        <p></p>
 
         <button id="begin">Begin Capture</button>
+        <p></p>
     </div>
 
 
@@ -268,7 +277,7 @@
 
                         // parseInt(i.lastChild.innerText)
 
-                        if (sign_count == 1) {
+                        if (sign_count >= 1) {
                             submitButton.hidden = false // makes the button visible
                             // console.log('TRACE_TIP', traceTip)
                             submitButton.addEventListener('click',
@@ -348,7 +357,7 @@
 
                             // parseInt(i.lastChild.innerText)
 
-                            if (sign_count == 1) {
+                            if (sign_count >= 1) {
                                 submitButton.hidden = false // makes the button visible
                                 // console.log('TRACE_TIP', traceTip)
                                 submitButton.addEventListener('click',

@@ -331,7 +331,6 @@ def add_collection():
             
             existing_data = existing_data.loc[:, ~existing_data.columns.str.match("Unnamed")] 
             existing_data.reset_index(inplace=True, drop=True)
-            # print('NOEW?', existing_data)
 
             existing_data.to_csv('static/hand_notorso.csv')
             print('NEW!')
@@ -607,7 +606,7 @@ def practice():
                 print('CONVERTED DATA', converted_data)
                 strung_chars = predict_signs(converted_data)
 
-                print('PREDICTED', strung_chars)
+                print('PREDICTED', strung_chars, 'INPUT', str_class)
 
                 if str_class == strung_chars.lower():
                     result = "Correct"
@@ -632,6 +631,8 @@ def practice():
                 converted_data = convert_signs(raw_data)
                 converted_data.update(converted_data_pose)
                 strung_chars = predict_signs_pose(converted_data)
+                print('PREDICTED', strung_chars, 'INPUT', str_class)
+
 
                 if str_class == strung_chars.lower():
                     result = "Correct"

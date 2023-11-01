@@ -34,6 +34,7 @@ SIGN_505 CONTAINS THE LIST OF SIGNS IN DATA BASE; SIGN DATA = SIGN SELECTED BY U
 
         #navheader {
             height: 10%;
+            background-color: #B892FF;
         }
 
         #content {
@@ -47,6 +48,26 @@ SIGN_505 CONTAINS THE LIST OF SIGNS IN DATA BASE; SIGN DATA = SIGN SELECTED BY U
             width: 100%;
             height: 100%;
         }
+
+        .btn {
+            background-color: black;
+        }
+
+        #home {
+            color: white;
+        }
+
+        #grid {
+            color: #F45B69;
+        }
+
+        #collect {
+            color: #41EAD4;
+        }
+
+        #practice {
+            color: #B892FF
+        }
     </style>
 </head>
 
@@ -54,12 +75,12 @@ SIGN_505 CONTAINS THE LIST OF SIGNS IN DATA BASE; SIGN DATA = SIGN SELECTED BY U
 
     <header>
         <!-- Jumbotron -->
-        <div id="navheader" class="p-5 text-center bg-light mb-3 mb-md-4 mb-lg-4">
+        <div id="navheader" class="p-5 text-center mb-3 mb-md-4 mb-lg-4" fill="#B892FF">
             <h1 class="mb-3">Practice Your Sign Language!</h1>
-            <h4 class="mb-3">Subheading</h4>
-            <a class="btn btn-primary" href="/" role="button">Home</a>
-            <a class="btn btn-primary" href="/grid" role="button">View Sign</a>
-            <a class="btn btn-primary" href="/add_collection" role="button">Add Signs</a>
+            <h5 class="mb-3">Enter whatever sign you want to practice in the input form, press enter, and sign away!</h5>
+            <a class="btn" id="home" href="/" role="button">Home</a>
+            <a class="btn" id="grid" href="/grid" role="button">View Sign</a>
+            <a class="btn" id="collect" href="/add_collection" role="button">Add Signs</a>
         </div>
         <!-- Jumbotron -->
     </header>

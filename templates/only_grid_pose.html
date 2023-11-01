@@ -27,6 +27,27 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
         href="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils@0.6/control_utils.css" crossorigin="anonymous">
 
     <style>
+
+        #navheader {
+            background-color: #F45B69;
+        }
+
+        .btn {
+            background-color: black;
+        }
+
+        #home {
+            color: white;
+        }
+
+        #collect {
+            color: #41EAD4;
+        }
+
+        #practice {
+            color: #B892FF
+        }
+
         @media screen and (max-width: 767) {
             .landmark-grid-container {
                 width: 250px;
@@ -85,11 +106,11 @@ ACTION: TRY TO CHANGE THE ATTRIBUTES BY SETTING THEM IN RESIZECANVAS() / CHANGIN
 <body>
     <header>
         <!-- Navigation bar -->
-        <div id="navheader" class="p-5 text-center bg-light">
+        <div id="navheader" class="p-5 text-center">
             <h1 class="mb-3">View Signs!</h1>
-            <a class="btn btn-primary" href="/practice" role="button">Pratice Sign</a>
-            <a class="btn btn-primary" href="/" role="button">Home</a>
-            <a class="btn btn-primary" href="/add_collection" role="button">Add Signs</a>
+            <a class="btn" id="home" href="/" role="button">Home</a>
+            <a class="btn" id="practice" href="/practice" role="button">Pratice Sign</a>
+            <a class="btn" id="collect" href="/add_collection" role="button">Add Signs</a>
         </div>
     </header>
 
